@@ -1,0 +1,23 @@
+runpod_worker_comfy:
+  base_path: /workspace/ComfyUI/models
+  checkpoints: checkpoints/
+  clip: clip/
+  clip_vision: clip_vision/
+  configs: configs/
+  controlnet: controlnet/
+  diffusers: diffusers/
+  diffusion_models: diffusion_models/
+  embeddings: embeddings/
+  gligen: gligen/
+  hypernetworks: hypernetworks/
+  loras: loras/
+  onnx: onnx/
+  photomaker: photomaker/
+  sams: sams/
+  style_models: style_models/
+  t5: t5/
+  ultralytics: ultralytics/
+  unet: unet/
+  upscale_models: upscale_models/
+  vae: vae/
+  vae_approx: vae_approx/
