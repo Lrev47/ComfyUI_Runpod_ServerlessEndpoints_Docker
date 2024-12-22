@@ -1,5 +1,5 @@
-# Stage 1: Base image with common dependencies
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 AS base
+# Stage 1: Base image with CUDA 12.1.105 and Ubuntu 22.04
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04 AS base
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip \
     git \
-    wget
+    wget \
+    libgl1 && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-# Clean up to reduce image size
-RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Clone ComfyUI repository
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
@@ -25,14 +25,16 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
 WORKDIR /comfyui
 
 # Install ComfyUI dependencies
-RUN pip3 install --upgrade --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
+RUN pip3 install --upgrade --no-cache-dir torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu121 \
     && pip3 install --upgrade -r requirements.txt
 
-# Install runpod
-RUN pip3 install runpod requests
+# Install runpod, requests, and pyyaml
+RUN pip3 install runpod requests pyyaml
 
 # Support for the network volume
-ADD src/extra_model_paths.yaml ./
+ADD src/extra_model_paths.yaml /comfyui/
+RUN chmod 644 /comfyui/extra_model_paths.yaml
+
 
 # Go back to the root
 WORKDIR /
