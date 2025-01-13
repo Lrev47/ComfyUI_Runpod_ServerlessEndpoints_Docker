@@ -1,0 +1,36 @@
+.ocean-theme {
+  background: url("https://images.unsplash.com/photo-1471047283799-ebd97acc0bc3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8b2NlYW58fHx8fHwxNjkzNjc0MTQ0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080")
+    no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: auto;
+  color: white;
+  font-family: "Arial", sans-serif;
+}
+
+.ocean-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  color: red;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+thead.thead-dark {
+  background-color: rgba(0, 119, 182, 0.8);
+  color: #ffffff;
+}
+
+.table-bordered tbody td,
+.table-bordered tbody th,
+.table-bordered thead th {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger {
+  background-color: #d00000;
+  border-color: #9d0208;
+}
